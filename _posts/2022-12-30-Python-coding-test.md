@@ -8,15 +8,24 @@ type: "TIL"
 문제를 먼저 풀어보며 개념을 역추적 학습 합니다
 
 ## Contents
-- [basic](#basic)
-    - [casting](#casting)
-- [list](#list)
-- [date structure](#data-structure)
-    - [deque](#depue)
+- [Basic](#basic)
+  - [Casting](#casting)
+  - [enumerate()](#enumerate)
+    - [Reference](#reference)
+  - [List](#list)
+    - [init list()](#init-list)
+    - [리스트 연산자](#리스트-연산자)
+    - [리스트 함수](#리스트-함수)
+    - [Reference](#reference-1)
+- [Data Structure](#data-structure)
+  - [depue()](#depue)
+    - [rotate()](#rotate)
+    - [Reference](#reference-2)
 - [function](#function)
-    - [split()](#split)
-    - [join()](#join)
-    - [map()](#map)
+  - [split()](#split)
+  - [join()](#join)
+  - [map()](#map)
+    - [join() + map()](#join--map)
 
 
 ---
@@ -185,6 +194,33 @@ print(x)
     ```py
     리스트.clear()
     ```
+
+**기타 내장함수**
+
+```py
+
+sum(list) - list의 합계 반환
+
+sum(list, start) - list의 합계와 start의 합을 반환
+
+len(list) - 리스트의 전체 길이 반환
+
+max(list) - 리스트 중 최대 값 반환
+
+min(list) - 리스트 중 최소 값 반환
+
+list.count(obj) - 리스트 중 obj의 갯수 count 반환
+
+list.index(obj) - 리스트 중 obj가 있는 가장 작은 idx를 반환
+
+list.insert(index, obj) - 리스트의 idx 위치에 obj 삽입
+
+list.remove(obj)
+
+list.reverse()
+
+list.sort()
+```
 
 ### Reference
 
