@@ -1,9 +1,8 @@
 ---
 layout: post
-title: [Python] 입문 week-01
+title: Python For Coding Test
 ---
 
-# Coding Test by Python
 
 ## Contents
 - [basic](#basic)
