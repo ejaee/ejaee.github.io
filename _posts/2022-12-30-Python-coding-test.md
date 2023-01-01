@@ -7,30 +7,31 @@ type: "TIL"
 
 문제를 먼저 풀어보며 개념을 역추적 학습 합니다
 
-## Contents
+# Contents
 - [Basic](#basic)
-  - [Casting](#casting)
-  - [enumerate()](#enumerate)
-    - [Reference](#reference)
-  - [List](#list)
+	- [Casting](#casting)	
+	- [enumerate()](#enumerate)
+
+- [input](#input)
+- [List](#list)
     - [init list()](#init-list)
     - [리스트 연산자](#리스트-연산자)
     - [리스트 함수](#리스트-함수)
-    - [Reference](#reference-1)
+
 - [Data Structure](#data-structure)
-  - [depue()](#depue)
+	- [depue()](#depue)
     - [rotate()](#rotate)
-    - [Reference](#reference-2)
+
 - [function](#function)
-  - [split()](#split)
-  - [join()](#join)
-  - [map()](#map)
-    - [join() + map()](#join--map)
+	- [split()](#split)
+	- [join()](#join)
+  	- [map()](#map)
+  	- [join() + map()](#join--map)
 
 
 ---
 
-# Basic
+# 📌 Basic
 
 ## Casting
 
@@ -54,9 +55,98 @@ int(input())
 
 ---
 
+# 📌 input()
+
+- input()
+
+```py
+str = input() -> 문자열 입력
+
+num = int(input()) -> 숫자 입력
+```
+
+- input().split()
+
+```py
+str = input().split()
+>>> ['you','are','welcome']
+```
+
+- map()
+
+```py
+map(int, input().split())  # 숫자형을 입력받겠다.
+map(str, input().split()) # 문자형을 입력받겠다.
+```
+
+- sys.stdin.readline()
+
+대량의 데이터를 반복적으로 입력해야할 때
+
+input()대신 sys.stdin.readline()을 이용하면 성능(속도)이 향상됩니다
+
+_like Scanner -> BufferedReader in java_
+
+
+
+```py
+import sys
+read =  sys.stdin.readline() -> 123 456
+print(read) -> 123 456
+
+# 각각의 str를 저장하고 싶을때
+read2 =  sys.stdin.readline().split() -> 123 456 789
+print(read2) -> ['123', '456', '789']
+
+
+# 각각의 리스트 원소를 저장하고 싶을때
+year, month, date =  map(int, sys.stdin.readline().split()) -> 2022 01 01
+print(year, month, date) -> 2022 1 1
+```
+
+readline() 은 '\n'도 받습니다
+
+따라서 `rstrip()`을 통해 제거할 수 있습니다
+
+```py
+import sys
+
+input_data = sys.stdin.readline().rstrip()
+```
+
+- 배열
+
+```py
+a = [0 for _ in range(5)]
+
+-> [0, 0, 0, 0, 0]
+```
+
+- 2차원 배열
+
+```py
+m, n = 5,4
+a = [[0]*m for _ in range(n)]
+
+-> [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+```
+
+- for문을 이용한 N번 입력
+
+```py
+answer = [int(input()) for _ in range(N)]
+
+-> N = 5 이면 원소가 다섯개인 리스트를 생성할 수 있습니다
+```
+
+**Reference**
+
+- [input](https://velog.io/@tbnsok40/파이썬-다양한-입력방법-input-read-readline)
+
+
 ---
 
-## enumerate()
+# 📌 enumerate()
 
 반복문을 사용할 때 리스트를 인덱싱 합니다
 
@@ -85,18 +175,18 @@ for i, val in enumerate(item):
 > 2 번쨰 값은 Third입니다 
 
 
-### Reference
+**Reference**
 
 - [enumerate](https://devpouch.tistory.com/74)
 
 
 ---
 
-## List
+# 📌 List
 
 리스트 내부에 넣는 자료를 요소(element)라고 부른다
 
-### init list()
+## init list()
 
 ```py
 # 초기화는 쉼표로 구분해서 입력한다
@@ -118,7 +208,7 @@ print(list_a)
 > ['변경', 32, 103, '문자열', True, False]
 ```
 
-### 리스트 연산자
+## 리스트 연산자
 
 - 연결(+)
 - 반복(*)
@@ -138,7 +228,7 @@ print("len(list_a) = ", len(list_a))
 # len(list_a) =  3
 ```
 
-### 리스트 함수
+## 리스트 함수
 
 **추가**
 - 리스트명.append(요소)
@@ -222,7 +312,7 @@ list.reverse()
 list.sort()
 ```
 
-### Reference
+**Reference**
 
 - [List](https://codesyun.tistory.com/174)
 - [List func](https://m.blog.naver.com/wideeyed/221541104629)
@@ -230,9 +320,136 @@ list.sort()
 
 ---
 
+# 📌 dictionary
+
+딕셔너리 타입은 immutable한 키(key)와 mutable한 값(value)으로 맵핑되어 있는 순서가 없는 집합입니다
+
+중괄호로 되어있고 `키`와 `값`이 있습니다
+
+```py
+>>> {"a" : 1, "b":2}
+{'a': 1, 'b': 2}
+```
+
+값은 중복될 수 있지만, 키가 중복되면 마지막 값으로 덮어씌워집니다
+
+```py
+>>> {"a" : 1, "a":2}
+{'a': 2}
+```
+
+순서가 없기 때문에 인덱스로는 접근할수 없고, 키로 접근 할 수 있습니다
+
+```py
+>>> d = {'abc' : 1, 'def' : 2}
+>>> d[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 0
+
+>>> d['abc']
+1
+```
+
+mutable 한 객체이므로 키로 접근하여 값을 변경할 수 있습니다
+
+```py
+>>> d['abc'] = 5
+>>> d
+{'abc': 5, 'def': 2}
+```
+
+새로운 키와 값을 아래와 같이 추가할 수 있습니다.
+
+```py
+>>> d['ghi'] = 999
+>>> d
+{'abc': 5, 'def': 2, 'ghi': 999}
+```
+
+## dict 선언 방법
+
+```py
+# 1
+>>> e = {}
+>>> type(e)
+<class 'dict'>
+
+# 2
+>>> f = dict()
+>>> type(f)
+<class 'dict'>
+```
+
+키와 값을 다음과 같이 바로 할당할 수 있습니다
+
+```py
+>>> dict_a = dict( alice = 5, bob = 20, tony= 15, suzy = 30)
+>>> dict_a
+{'alice': 5, 'bob': 20, 'tony': 15, 'suzy': 30}
+```
+
+## dict for 문
+
+dict 를 for문 돌리면 key 값이 할당 됩니다
+
+```py
+>>> a = {'alice': [1, 2, 3], 'bob': 20, 'tony': 15, 'suzy': 30}
+>>> for key in a:
+...     print(key)
+... 
+alice
+bob
+tony
+suzy
+```
+
+value 값으로 돌리고 싶다면 `values()` 를 사용합니다
+
+```py
+>>> a = {'alice': [1, 2, 3], 'bob': 20, 'tony': 15, 'suzy': 30}
+>>> for val in a.values():
+...     print(val)
+... 
+[1, 2, 3]
+20
+15
+30    
+```
+
+key와 value를 한꺼번에 반복하고 싶다면 `items()` 를 사용합니다
+
+```py
+>>> a = {'alice': [1, 2, 3], 'bob': 20, 'tony': 15, 'suzy': 30}
+>>> for key, val in a.items():
+...     print("key = {key}, value={value}".format(key=key,value=val))
+... 
+key = alice, value=[1, 2, 3]
+key = bob, value=20
+key = tony, value=15
+key = suzy, value=30
+```
+
+**Reference**
+
+- [dict_wiki](https://wikidocs.net/16043)
 
 
-# Data Structure
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+# 📌 Data Structure
 
 ## depue()
 _데크_
@@ -273,7 +490,7 @@ deq.pop()
 - deque.remove(item): item을 데크에서 찾아 삭제
 - deque.rotate(num): 데크를 num만큼 회전(양수면 오른쪽, 음수면 왼쪽).
 
-### rotate()
+## rotate()
 
 ```py
 # Contain 1, 2, 3, 4, 5 in deq
@@ -293,13 +510,125 @@ deq.rotate(-1)
 
 
 
-### Reference
+**Reference**
 - [deque in python](https://www.geeksforgeeks.org/deque-in-python/)
 - [deque](https://chaewonkong.github.io/posts/python-deque.html)
 
 ---
 
-# function
+# 📌 algorithm
+
+## union - find algorithm
+
+간단하게 다수의 노드들 중에 연결된 노드를 찾거나 노드들을 합칠때 사용하는 알고리즘입니다
+
+서로 중복되지 않는 부분 집합들로 나눠진 원소들에 대한 정보를 저장하고 조작하는 자료 구조입니다
+
+![_config.yml](/images/algo-union_find.png)
+
+1, 2, 3, 4, / 5, 6, 7, 8, / 9, 10
+
+|1|2|3|4|5|6|7|8|9|10|
+|1|1|2|3|5|5|6|7|9|9|
+
+root 노드를 값으로 가지기 위해서는 순차적으로 아래와 같은 절차를 진행해야 합니다
+
+1. 원소 3과 2는 연결되어 있다
+2. 원소 3의 연결 정보를 2로 변경한다
+3. 여기서 원소 2와 1은 연결되어 있다
+4. 즉, 3의 연결 정보를 1로 변경한다
+
+|1|2|3|4|5|6|7|8|9|10|
+|1|1|1|1|5|5|5|5|9|9|
+
+이를 구현하기 전에 Disjoint Set 에 대해 알아야 합니다
+
+**Disjoint Set**
+
+_서로소 집합_
+
+서로 공통된 원소를 가지고 있지 않은 두 개 이상의 집합을 말합니다
+
+Disjoint Set 자료구조를 통해 서로 다른 원소들이 같은 집합에 속해 있는지,
+
+혹은 속해있지 않은지 판별하는데 유용하게 사용할 수 있습니다
+
+**구현**
+
+- 초기화: N 개의 원소가 각각의 집합에 포함되어 있도록 초기화
+- Union 연산: 두 원소 a, b가 주어질 때, 이들이 속한 두 집합을 하나로 합침
+- Find 연산: 어떤 원소 a가 주어질 때 이 원소가 속한 집합을 반환
+
+구현 방법으로 배열과 트리 두 가지 방식이 있습니다
+
+효율성을 위해 트리 구조를 사용합니다
+
+```py
+# 특정 원소가 속한 집합을 찾기
+def find_parent(parent, x):
+    # 루트 노드가 아니라면, 루트 노드를 찾을 때까지 재귀적으로 호출
+    if parent[x] != x:
+        return find_parent(parent, parent[x])
+    return x
+
+        # 연결 직전 노드가 아닌, 루트 노드를 모두 입력해주고 싶다면
+        if parent[x] != x:
+             parent[x] = find_parent(parent, parent[x])
+        return parent[x]
+
+# 두 원소가 속한 집합을 합치기
+def union_parent(parent, a, b):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
+
+# 노드의 개수와 간선(Union 연산)의 개수 입력 받기
+v, e = map(int, input().split())
+parent = [0] * (v + 1) # 부모 테이블 초기화하기
+
+# 부모 테이블상에서, 부모를 자기 자신으로 초기화
+for i in range(1, v + 1):
+    parent[i] = i
+
+    # 부모 테이블 초기화 + 자기자신 초기화 한꺼번에 하는법
+    parent = [x for x in range(N + 1)]
+
+# Union 연산을 각각 수행
+for i in range(e):
+    a, b = map(int, input().split())
+    union_parent(parent, a, b)
+
+# 각 원소가 속한 집합 출력하기
+print('각 원소가 속한 집합: ', end='')
+for i in range(1, v + 1):
+    print(find_parent(parent, i), end=' ')
+
+print()
+
+# 부모 테이블 내용 출력하기
+print('부모 테이블: ', end='')
+for i in range(1, v + 1):
+    print(parent[i], end=' ')
+```
+
+
+***Reference***
+- [union-find](https://brownbears.tistory.com/460)
+- [union-find_code](https://velog.io/@woo0_hooo/알고리즘-union-find-알고리즘)
+
+
+
+
+
+
+
+
+---
+
+# 📌 function
 
 ## split()
 
@@ -346,7 +675,7 @@ list2 = list(map(str, list1))
 > 출력결과
 > ['1', '2', '3', '4']
 
-### join() + map()
+## join() + map()
 
 리스트를 출력하면 [value, value, value ...] 형식으로 출력됩니다
 
