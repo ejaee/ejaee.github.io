@@ -3,6 +3,7 @@ layout: post
 title: Java-BaekJoon 입력받기
 subtitle: "자바로 코딩테스트를 준비합니다"
 type: "CODING_TEST"
+published: true
 ---
 
 자바로 코딩테스트를 준비합니다
