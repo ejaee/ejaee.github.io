@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [JAVA] Tree 자료구조
+title: (JAVA) Tree 자료구조
 subtitle: "자료구조를 정리합니다"
 type: "DATA_STRUCTURE"
 published: true
