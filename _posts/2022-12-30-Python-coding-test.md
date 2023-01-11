@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python For Coding Test
+title: (Python) For Coding Test
 subtitle: "문제를 먼저 풀어보며 개념을 역추적 학습 합니다"
 type: "TIL"
 ---
